@@ -94,9 +94,23 @@ class DashboardDesainController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        //
-    }
+{
+    $desain = Desain::findOrFail($id);
+
+    $data = $request->validate([
+        'nama_pelanggan' => 'required|max:255',
+        'jenis_produk' => 'required|max:255',
+        'tinggi' => 'required|numeric',
+        'lebar' => 'required|numeric',
+        'harga' => 'required|numeric',
+        'keterangan' => 'required|max:255',
+    ]);
+
+    $desain->update($data);
+
+    return redirect('dashboard/desain')->with('success', 'Desain untuk ' . $desain->nama_pelanggan . ' berhasil diperbarui.');
+}
+
 
     /**
      * Remove the specified resource from storage.

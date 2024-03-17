@@ -31,21 +31,30 @@
                             </div>
                             <div class="mb-3">
                                 <label>Tinggi :</label>
-                                <input type="text" class="form-control" value="{{ old('tinggi') }}" name="tinggi">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{ old('tinggi') }}" name="tinggi">
+                                    <span class="input-group-text">cm</span>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label>Lebar :</label>
-                                <input type="text" class="form-control" value="{{ old('lebar') }}" name="lebar">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" value="{{ old('lebar') }}" name="lebar">
+                                    <span class="input-group-text">cm</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label>Harga :</label>
-                                <input type="text" class="form-control" value="{{ old('harga') }}" name="harga">
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp.</span>
+                                    <input type="text" class="form-control" value="{{ old('harga') }}" name="harga">
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label>Keterangan :</label>
-                                <textarea type="text" class="form-control" name="keterangan" cols="30" rows="5">{{ old('') }}</textarea>
+                                <textarea type="text" class="form-control" name="keterangan" cols="30" rows="8">{{ old('') }}</textarea>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Simpan</button>

@@ -11,12 +11,13 @@
                 <h6 class="m-0 font-weight-bold text-dark"><a href="{{ route('dashboard') }}"> <i
                             class="fas fa-fw fa-tachometer-alt"></i>
                         Dashboard</a> / <a href="{{ route('desain.index') }}">
-                        Desain</a> / Tambah</h6>
+                        Desain</a> / Edit</h6>
                 </p>
             </div>
             <div class="card-body">
                 <form action="{{ route('desain.update', $desains->id) }}" method="POST">
                     @csrf
+                    @method('put')
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="mb-3">
@@ -31,28 +32,38 @@
                             </div>
                             <div class="mb-3">
                                 <label>Tinggi :</label>
-                                <input type="text" class="form-control" name="tinggi"
-                                    value="{{ old('tinggi', $desains->tinggi) }}">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="tinggi"
+                                        value="{{ old('tinggi', $desains->tinggi) }}">
+                                    <span class="input-group-text">cm</span>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label>Lebar :</label>
-                                <input type="text" class="form-control" name="lebar"
-                                    value="{{ old('lebar', $desains->lebar) }}">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="lebar"
+                                        value="{{ old('lebar', $desains->lebar) }}">
+                                    <span class="input-group-text">cm</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label>Harga :</label>
-                                <input type="text" class="form-control" name="harga"
-                                    value="{{ old('harga', $desains->harga) }}">
+                                <div class="input-group">
+                                    <span class="input-group-text">Rp.</span>
+                                    <input type="text" class="form-control" name="harga"
+                                        value="{{ old('harga', $desains->harga) }}">
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label>Keterangan :</label>
-                                <textarea type="text" class="form-control" name="keterangan" cols="30" rows="5">{{ old('keterangan', $desains->keterangan) }}</textarea>
+                                <textarea type="text" class="form-control" name="keterangan" cols="30" rows="8">{{ old('keterangan', $desains->keterangan) }}</textarea>
                             </div>
 
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Simpan</button>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Perbarui</button>
                 </form>
             </div>
         </div>

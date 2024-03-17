@@ -1,4 +1,4 @@
-<footer class="bg-white fixed-bottom">
+<footer class="bg-white sticky-footer">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">

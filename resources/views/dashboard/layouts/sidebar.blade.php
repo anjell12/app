@@ -1,5 +1,4 @@
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion fixed-top" style="z-index: 9999"
-    id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" style="z-index: 9999" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">

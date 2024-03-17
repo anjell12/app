@@ -39,9 +39,8 @@
                 <!-- Topbar -->
                 @include('dashboard.layouts.topbar')
                 <!-- End of Topbar -->
-                <div style="padding-left: 225px; padding-top:80px">
-                    @yield('content')
-                </div>
+
+                @yield('content')
 
             </div>
             <!-- End of Main Content -->
