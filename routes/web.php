@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardContrOller;
+use App\Http\Controllers\DashboardDesainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,10 +26,12 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 
- Route::get('/register', [AuthController::class, 'register'])->name('register');
+ Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
  Route::post('/register', [AuthController::class, 'store'])->name('store');
 
-Route::get('/reset-password', [AuthController::class, 'password'])->name('password');
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/reset-password', [AuthController::class, 'password'])->name('password')->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
-Route::get('/dashboard',[DashboardContrOller::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::resource('/dashboard/desain', DashboardDesainController::class)->names('desain')->middleware('auth');
