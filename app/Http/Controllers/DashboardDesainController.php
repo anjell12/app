@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Desain;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class DashboardDesainController extends Controller
@@ -14,11 +15,12 @@ class DashboardDesainController extends Controller
      */
     public function index()
     {
-        $desain = Desain::orderBy('created_at', 'DESC')->paginate(5);
-        return view('dashboard.desain.index', [
-            'title' => 'Dashboard | Desain',
-            'desains' => $desain,
-        ]);
+        $desain = Desain::with('produk')->orderBy('created_at', 'DESC')->paginate(5);
+return view('dashboard.desain.index', [
+    'title' => 'Dashboard | Desain',
+    'desains' => $desain,
+]);
+
     }
 
     /**
@@ -26,12 +28,16 @@ class DashboardDesainController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('dashboard.desain.tambah', [
-            'title' => 'Dashboard | Tambah Desain',
-        ]);
-    }
+public function create()
+{
+    $produk = Produk::all();
+
+    return view('dashboard.desain.tambah', [
+        'title' => 'Dashboard | Tambah Desain',
+        'produk' => $produk,
+    ]);
+}
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,7 +49,7 @@ class DashboardDesainController extends Controller
 {
     $data = $request->validate([
         'nama_pelanggan' => 'required|max:255',
-        'jenis_produk' => 'required|max:255',
+        'produk_id' => 'required|numeric',
         'tinggi' => 'required|numeric',
         'lebar' => 'required|numeric',
         'harga' => 'required|numeric',
@@ -123,5 +129,16 @@ class DashboardDesainController extends Controller
         $desains = Desain::find($id);
         $desains->delete();
         return redirect('dashboard/desain')->with('success', 'Desain '.$desains->nama_pelanggan.' berhasil dihapus.');
+    }
+
+    public function getHargaProduk($id)
+    {
+        $produk = Produk::find($id);
+
+        if ($produk) {
+            return response()->json(['success' => true, 'harga' => $produk->harga]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
 }

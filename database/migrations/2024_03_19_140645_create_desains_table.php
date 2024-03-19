@@ -15,13 +15,13 @@ class CreateDesainsTable extends Migration
     {
         Schema::create('desains', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('produk_id')->constrained('produks')->onDelete('cascade');
             $table->string('nama_pelanggan');
-            $table->string('jenis_produk');
             $table->float('tinggi');
             $table->float('lebar');
             $table->decimal('harga', 10, 2);
             $table->text('keterangan')->nullable();
-            $table->enum('status',['Belum Desain', 'Sudah Desain', 'Sudah Cetak'])->default('Belum Desain');
+            $table->enum('status', ['Belum Desain', 'Sudah Desain', 'Sudah Cetak'])->default('Belum Desain');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Desain;
+use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -23,9 +24,15 @@ class DatabaseSeeder extends Seeder
         'password' => bcrypt('password'),
     ]);
     
+     Produk::create([
+            'nama_produk' => 'Mug',
+            'tinggi' => 10.0,
+            'lebar' => 8.0,
+            'harga' => 50000,
+        ]);
      Desain::create([
+        'produk_id' =>'1',
             'nama_pelanggan' => 'Asep Winarno',
-            'jenis_produk' => 'Spanduk',
             'tinggi' => 10.5,
             'lebar' => 5.3,
             'harga' => 100000,
@@ -34,8 +41,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Budi Santoso',
-            'jenis_produk' => 'Banner',
             'tinggi' => 7.2,
             'lebar' => 3.6,
             'harga' => 80000,
@@ -44,8 +51,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Citra Permata',
-            'jenis_produk' => 'Flyer',
             'tinggi' => 5.0,
             'lebar' => 8.0,
             'harga' => 50000,
@@ -54,8 +61,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Dewi Susanti',
-            'jenis_produk' => 'Brochure',
             'tinggi' => 15.0,
             'lebar' => 10.0,
             'harga' => 150000,
@@ -64,8 +71,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Eko Setiawan',
-            'jenis_produk' => 'Kartu Nama',
             'tinggi' => 9.0,
             'lebar' => 5.5,
             'harga' => 70000,
@@ -74,8 +81,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Firman Cahyadi',
-            'jenis_produk' => 'Poster',
             'tinggi' => 12.0,
             'lebar' => 8.5,
             'harga' => 120000,
@@ -84,8 +91,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Gita Wijaya',
-            'jenis_produk' => 'Stiker',
             'tinggi' => 5.0,
             'lebar' => 5.0,
             'harga' => 30000,
@@ -94,8 +101,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Hana Kartika',
-            'jenis_produk' => 'Brosur',
             'tinggi' => 8.5,
             'lebar' => 11.0,
             'harga' => 90000,
@@ -104,8 +111,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Indra Permana',
-            'jenis_produk' => 'Kaos',
             'tinggi' => 28.0,
             'lebar' => 18.0,
             'harga' => 250000,
@@ -114,13 +121,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Desain::create([
+            'produk_id' =>'1',
             'nama_pelanggan' => 'Joko Susilo',
-            'jenis_produk' => 'Mug',
             'tinggi' => 10.0,
             'lebar' => 8.0,
             'harga' => 50000,
             'keterangan' => 'Deskripsi Mug',
             'status' => 'Sudah Desain',
         ]);
+       
 }
 }

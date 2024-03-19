@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardContrOller;
 use App\Http\Controllers\DashboardDesainController;
+use App\Http\Controllers\DashboardProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,6 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 Route::get('/dashboard',[DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::resource('/dashboard/desain', DashboardDesainController::class)->names('desain')->middleware('auth');
+Route::get('/getHargaProduk/{id}',[DashboardDesainController::class,'getHargaProduk']);
+
+Route::resource('/dashboard/produk', DashboardProdukController::class)->names('produk')->middleware('auth');

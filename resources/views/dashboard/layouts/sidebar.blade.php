@@ -28,6 +28,12 @@
             <span>Desain</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('produk.index') }}">
+            <i class="fas fa-business-time"></i>
+            <span>Produk</span></a>
+    </li>
+
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"

@@ -25,21 +25,27 @@
                                     name="nama_pelanggan">
                             </div>
                             <div class="mb-3">
-                                <label>Jenis Produk</label>
-                                <input type="text" class="form-control" value="{{ old('jenis_produk') }}"
-                                    name="jenis_produk">
+                                <label for="jenis_produk">Produk</label>
+                                <select name="produk_id" id="produk" class="form-control">
+                                    <option value="">Pilih Produk</option>
+                                    @foreach ($produk as $produk)
+                                        <option value="{{ $produk->id }}">{{ $produk->nama_produk }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label>Tinggi :</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ old('tinggi') }}" name="tinggi">
+                                    <input type="text" class="form-control" value="{{ old('tinggi') }}" id="tinggi"
+                                        name="tinggi">
                                     <span class="input-group-text">cm</span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label>Lebar :</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" value="{{ old('lebar') }}" name="lebar">
+                                    <input type="text" class="form-control" value="{{ old('lebar') }}" id="lebar"
+                                        name="lebar">
                                     <span class="input-group-text">cm</span>
                                 </div>
                             </div>
@@ -49,7 +55,8 @@
                                 <label>Harga :</label>
                                 <div class="input-group">
                                     <span class="input-group-text">Rp.</span>
-                                    <input type="text" class="form-control" value="{{ old('harga') }}" name="harga">
+                                    <input type="text" class="form-control" value="{{ old('harga') }}" id="harga"
+                                        name="harga">
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -64,4 +71,33 @@
 
     </div>
     <!-- /.container-fluid -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const produk = document.getElementById('produk');
+            const harga = document.getElementById('harga');
+
+            produk.addEventListener('change', function() {
+                const selectedProductId = produk.value;
+
+                fetch(`/getHargaProduk/${selectedProductId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Jika menggunakan CSRF protection
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            harga.value = data.harga;
+                        } else {
+                            harga.value = ''; // Reset harga jika tidak ada data yang ditemukan
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
 @endsection
