@@ -72,8 +72,12 @@ class DashboardProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   
+        $produks = Produk::find($id);
+        return view('dashboard.produk.edit', [
+            'title' => 'Dashboard | Edit Produk',
+            'produks' => $produks
+        ]);
     }
 
     /**
@@ -85,7 +89,19 @@ class DashboardProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $produk = Produk::findOrFail($id);
+
+    $data = $request->validate([
+        'nama_produk' => 'required|max:255',
+        'tinggi' => 'required|numeric',
+        'lebar' => 'required|numeric',
+        'harga' => 'required|numeric',
+    ]);
+
+    $produk->update($data);
+
+    return redirect('dashboard/produk')->with('success', $produk->nama_produk . ' berhasil diperbarui.');
+
     }
 
     /**
