@@ -27,7 +27,7 @@
                                 <h5 class="card-title">{{ $desains->nama_pelanggan }}</h5>
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <p class="card-text">Produk : {{ $desains->jenis_produk }}</p>
+                                        <p class="card-text">Produk : {{ $desains->produk->nama_produk }}</p>
                                         <p class="card-text">Tinggi : {{ $desains->tinggi }}cm</p>
                                         <p class="card-text">Lebar : {{ $desains->lebar }}cm</p>
                                         <p class="card-text">Harga : Rp. {{ $desains->harga }}</p>

@@ -70,11 +70,14 @@ public function create()
      */
     public function show($id)
     {
-        $desain = Desain::find($id);
-        return view('dashboard.desain.lihat', [
-            'title' => 'Dashboard | Lihat Desain',
-            'desains' => $desain,
-        ]);
+      $desain = Desain::find($id);
+$produk = $desain->produk; // Jika relasi antara Desain dan Produk sudah diatur dengan benar
+
+return view('dashboard.desain.lihat', [
+    'title' => 'Dashboard | Lihat Desain',
+    'desains' => $desain,
+    'produk' => $produk, // Mengirim produk terkait desain ke view
+]);
     }
 
     /**
@@ -86,9 +89,11 @@ public function create()
     public function edit($id)
     {
         $desains = Desain::find($id);
-        return view('dashboard.desain.edit', [
+ $produk = Produk::all();
+         return view('dashboard.desain.edit', [
             'title' => 'Dashboard | Edit Desain',
-            'desains' => $desains
+            'desains' => $desains,
+            'produk' => $produk, // Mengirim produk terkait desain ke view
         ]);
     }
 
@@ -105,7 +110,7 @@ public function create()
 
     $data = $request->validate([
         'nama_pelanggan' => 'required|max:255',
-        'jenis_produk' => 'required|max:255',
+        'produk_id' => 'required|numeric',
         'tinggi' => 'required|numeric',
         'lebar' => 'required|numeric',
         'harga' => 'required|numeric',
