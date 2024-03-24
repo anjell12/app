@@ -33,7 +33,11 @@
                                 <th>Tinggi</th>
                                 <th>Lebar</th>
                                 <th>Harga</th>
-                                <th>Aksi</th>
+                                @auth
+                                    @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'IT' || auth()->user()->role == 'Owner')
+                                        <th>Aksi</th>
+                                    @endif
+                                @endauth
                             </tr>
                         </thead>
                         <tbody>
@@ -44,23 +48,23 @@
                                     <th>{{ $item->tinggi }}</th>
                                     <th>{{ $item->lebar }}</th>
                                     <th>{{ $item->harga }}</th>
-                                    <th>
-                                        <a href="" class="btn btn-success" title="Desain"><i
-                                                class="fas fa-check"></i></a>
-                                        <a href="{{ route('produk.show', $item->id) }}" class="btn btn-dark"
-                                            title="Lihat"><i class="fas fa-eye"></i></a>
-                                        <a href="{{ route('produk.edit', $item->id) }}" class="btn btn-warning"
-                                            title="Edit"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ route('produk.destroy', $item->id) }}" method="post"
-                                            class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger" title="Hapus"
-                                                onclick="return confirm('Apakah Anda yakin ingin menghapus produk {{ $item->nama_produk }}?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </th>
+                                    @auth
+                                        @if (auth()->user()->role == 'Admin' || auth()->user()->role == 'IT' || auth()->user()->role == 'Owner')
+                                            <th>
+                                                <a href="{{ route('produk.edit', $item->id) }}" class="btn btn-warning"
+                                                    title="Edit"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('produk.destroy', $item->id) }}" method="post"
+                                                    class="d-inline">
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger" title="Hapus"
+                                                        onclick="return confirm('Apakah Anda yakin ingin menghapus produk {{ $item->nama_produk }}?')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </th>
+                                        @endif
+                                    @endauth
                                 </tr>
                             @endforeach
                         </tbody>

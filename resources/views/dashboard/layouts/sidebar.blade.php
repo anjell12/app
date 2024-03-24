@@ -21,12 +21,17 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
+    {{-- @auth
+        @if (Auth::user()->role == 'Desain') --}}
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('desain.index') }}">
             <i class="fas fa-fw fa-palette"></i>
             <span>Desain</span></a>
     </li>
+    {{-- @endif
+    @endauth --}}
+
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('produk.index') }}">
@@ -51,6 +56,11 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('user.index') }}">
+            <i class="fas fa-users"></i>
+            <span>User</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
